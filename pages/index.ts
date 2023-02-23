@@ -1,8 +1,12 @@
 import "./index.scss"
-import { theme } from "@chocolatelibui/theme";
+import DocManager from "@chocolatelibui/document";
+import ThemeEngine from "@chocolatelibui/theme";
 import { initVariableRoot } from "@chocolatelibui/theme"
 import { grey } from "@chocolatelib/colors";
 import * as spinner from "../src"
+
+let doc = new DocManager(document);
+let eng = new ThemeEngine(doc);
 
 export let variables = initVariableRoot('YO', 'Spinner', 'Spinner used as a placeholder for data with and unknown arrival time');
 variables.makeVariable('color', 'Dot color', 'Color of dots in spinner', grey['50'], grey['900'], 'Color', undefined);
@@ -10,10 +14,10 @@ variables.makeVariable('color', 'Dot color', 'Color of dots in spinner', grey['5
 
 let light = document.body.appendChild(document.createElement('button'));
 light.innerHTML = 'Light Mode';
-light.onclick = () => { theme.set = 'light' };
+light.onclick = () => { eng.theme.set = 'light' };
 let dark = document.body.appendChild(document.createElement('button'));
 dark.innerHTML = 'Dark Mode';
-dark.onclick = () => { theme.set = 'dark' };
+dark.onclick = () => { eng.theme.set = 'dark' };
 
 let tinyBox = document.createElement('div');
 document.body.appendChild(tinyBox);
